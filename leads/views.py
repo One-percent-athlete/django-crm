@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from .forms import LeadForm
+from .forms import LeadForm, LeadModelForm
 from .models import Lead, Agent
 
 def home_page(request):
@@ -22,14 +22,14 @@ def lead_detail(request, pk):
     return render(request, 'leads/lead_detail.html', context)
 
 def lead_create(request):
-    form = LeadForm()
+    form = LeadModelForm()
     if request.method == 'POST':
-        form = LeadForm(request.POST)
+        form = LeadModelForm(request.POST)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             age = form.cleaned_data['age']
-            agent = Agent.objects.first()
+            agent = form.cleaned_data['agent']
             Lead.objects.create(
                 first_name=first_name,
                 last_name=last_name,
@@ -40,3 +40,24 @@ def lead_create(request):
 
     context = {'form': form}
     return render(request, 'leads/lead_create.html', context)
+
+
+# def lead_create(request):
+#     form = LeadForm()
+#     if request.method == 'POST':
+#         form = LeadForm(request.POST)
+#         if form.is_valid():
+#             first_name = form.cleaned_data['first_name']
+#             last_name = form.cleaned_data['last_name']
+#             age = form.cleaned_data['age']
+#             agent = Agent.objects.first()
+#             Lead.objects.create(
+#                 first_name=first_name,
+#                 last_name=last_name,
+#                 age=age,
+#                 agent=agent
+#             )
+#             return redirect('leads:lead_list')
+
+#     context = {'form': form}
+#     return render(request, 'leads/lead_create.html', context)

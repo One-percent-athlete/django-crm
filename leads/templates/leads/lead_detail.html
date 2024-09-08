@@ -18,14 +18,14 @@
 </head>
 <body>
     <div>
-        <h1>This is the Lead List</h1>
-        {% for lead in leads %}
+        <h1>This is the Lead Detail</h1>
         <div class="lead">
-            <a href="{% url 'leads:lead_detail' lead.id %}">{{ lead.first_name }} {{ lead.last_name }}</a>
+            <p>{{ lead.first_name }} {{ lead.last_name }} - {{ lead.agent }}</p>
         </div>
-        {% endfor %}
-        
-        
+        <div>
+            <a href="{% url 'leads:lead_list' %}">Back To List</a>
+        </div>
+ 
     </div>
 </body>
 </html>

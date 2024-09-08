@@ -23,10 +23,13 @@
             <p>{{ lead.first_name }} {{ lead.last_name }} - {{ lead.agent }}</p>
         </div>
         <hr>
-        <hr>
+
         <div>
             <a href="{% url 'leads:lead_update' lead.id %}">Update</a>
         </div>
+        <hr>
+            <a href="{% url 'leads:lead_delete' lead.id %}">Delete</a>
+        <hr>
         <div>
             <a href="{% url 'leads:lead_list' %}">Back To List</a>
         </div>

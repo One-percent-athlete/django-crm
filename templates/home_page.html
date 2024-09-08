@@ -8,13 +8,12 @@
 <body>
     <div>
         <h1>This is the home page</h1>
-        <ul>
-            {% for lead in leads %}
-            <li>{{ lead }}</li>
-            {% endfor %}
-        </ul>
-        
-        
+        <div>
+            <a href="http://127.0.0.1:8000/admin/">Admin</a>
+        </div>
+        <div>
+            <a href="{% url 'leads:lead_list' %}">Check Our Leads</a>
+        </div>
     </div>
 </body>
 </html>

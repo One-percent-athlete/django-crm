@@ -8,6 +8,13 @@
 <body>
     <div>
         <h1>This is the home page</h1>
+        <ul>
+            {% for lead in leads %}
+            <li>{{ lead }}</li>
+            {% endfor %}
+        </ul>
+        
+        
     </div>
 </body>
 </html>

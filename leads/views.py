@@ -7,8 +7,8 @@ from .models import Lead, Agent
 class HomePageView(TemplateView):
     template_name = 'home_page.html'
 
-def home_page(request):
-    return render(request, 'home_page.html')
+# def home_page(request):
+#     return render(request, 'home_page.html')
 
 def lead_list(request):
     leads = Lead.objects.all()

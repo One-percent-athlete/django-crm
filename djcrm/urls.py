@@ -6,9 +6,7 @@ from leads.views import HomePageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('leads.urls')),
     path('', HomePageView.as_view(), name='home'),
-
     path('leads/', include('leads.urls', namespace='leads')),
 
 ]

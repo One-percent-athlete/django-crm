@@ -8,7 +8,7 @@
                 <h1 class="text-4xl text-gray-800">Here are our agents</h1>
             </div>
             <div>
-                <a class="text-gray-500 hover:text-blue-500" href="#">Create A New Agent</a>
+                <a class="text-gray-500 hover:text-blue-500" href="{% url 'agents:agent_create' %}">Create A New Agent</a>
             </div>
         </div>
         
@@ -22,7 +22,7 @@
               </svg>
             </div>
             <div class="flex-grow">
-              <h2 class="text-gray-900 text-lg title-font font-medium mb-3"><a href="{% url 'leads:lead_detail' lead.id %}">{{ agent.first_name }} {{ agent.last_name }}</a>
+              <h2 class="text-gray-900 text-lg title-font font-medium mb-3"><a href="#">{{ agent.user.username }} - {{ agent.organization }}</a>
               </h2>
               <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
               <hr>

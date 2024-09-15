@@ -12,7 +12,7 @@ urlpatterns = [
     path('<int:pk>/', LeadDetailView.as_view(), name='lead_detail'),
     # path('<int:pk>/', views.lead_detail, name='lead_detail'),
 
-    path('leads_create/', LeadCreateView.as_view(), name='lead_create'),
+    path('lead_create/', LeadCreateView.as_view(), name='lead_create'),
     # path('leads_create/', views.lead_create, name='lead_create'),
 
     path('<int:pk>/update', LeadUpdateView.as_view(), name='lead_update'),

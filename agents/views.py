@@ -41,3 +41,10 @@ class AgentUpdateView(LoginRequiredMixin, generic.UpdateView):
     def get_success_url(self):
         return reverse('agents:agent_list')
     
+
+class AgentDeleteView(LoginRequiredMixin, generic.DeleteView):
+    template_name = 'agents/agent_delete.html'
+    queryset = Agent.objects.all()
+
+    def get_success_url(self):
+        return reverse('agents:agent_list')

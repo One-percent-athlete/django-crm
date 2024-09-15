@@ -29,7 +29,7 @@ class AgentCreateView(LoginRequiredMixin, generic.CreateView):
     
     
 
-# class LeadDetailView(LoginRequiredMixin, generic.DetailView):
-#     template_name = 'leads/lead_detail.html'
-#     queryset = Agent.objects.all()
-#     context_object_name = 'lead'
+class AgentDetailView(LoginRequiredMixin, generic.DetailView):
+    template_name = 'agents/agent_detail.html'
+    queryset = Agent.objects.all()
+    context_object_name = 'agent'

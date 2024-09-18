@@ -117,6 +117,10 @@ class LeadUpdateView(OrganizerLoginRequiredMixin, generic.UpdateView):
 
     def get_success_url(self):
         return reverse('leads:lead_list')
+    
+    def get_queryset(self):
+        user = self.request.user
+        return Lead.objects.filter(organization=user.userprofile)
 
 # def lead_update(request, pk):
 #     lead = Lead.objects.get(id=pk)
@@ -165,6 +169,10 @@ class LeadDeleteView(OrganizerLoginRequiredMixin, generic.DeleteView):
 
     def get_success_url(self):
         return reverse('leads:lead_list')
+    
+    def get_queryset(self):
+        user = self.request.user
+        return Lead.objects.filter(organization=user.userprofile)
 
 # def lead_delete(request, pk):
 #     lead = Lead.objects.get(id=pk)

@@ -1,3 +1,4 @@
+from typing import Any
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, reverse
 from django.views import generic
@@ -23,8 +24,21 @@ class HomePageView(generic.TemplateView):
 
 class LeadListView(LoginRequiredMixin, generic.ListView):
     template_name = 'leads/lead_list.html'
-    queryset = Lead.objects.all()
     context_object_name = 'leads'
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_organizer:
+            queryset = Lead.objects.filter(organization=user.userprofile)
+        else:
+            queryset = Lead.objects.filter(organization=user.agent.organization)
+            queryset = queryset.filter(agent__user=user)
+
+        return queryset
+             
+
+
 
 # def lead_list(request):
 #     leads = Lead.objects.all()

@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
     
 class User(AbstractUser):
-    is_organizar = models.BooleanField(default=True)
+    is_organizer = models.BooleanField(default=True)
     is_agent = models.BooleanField(default=False)
 
 class UserProfile(models.Model):
@@ -28,7 +28,7 @@ class Agent(models.Model):
     organization = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user.username} - {self.user.email}"
+        return f"{self.user.username} - {self.user.email} - org: {self.organization}"
     
 def post_user_created_signal(sender, instance, created, **kwargs):
     if created:

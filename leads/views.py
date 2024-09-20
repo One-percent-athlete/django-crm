@@ -30,13 +30,22 @@ class LeadListView(LoginRequiredMixin, generic.ListView):
         user = self.request.user
 
         if user.is_organizer:
-            queryset = Lead.objects.filter(organization=user.userprofile)
+            queryset = Lead.objects.filter(organization=user.userprofile, agent__isnull=False)
         else:
-            queryset = Lead.objects.filter(organization=user.agent.organization)
+            queryset = Lead.objects.filter(organization=user.agent.organization, agent__isnull=False)
             queryset = queryset.filter(agent__user=user)
 
         return queryset
-             
+    
+    def get_context_date(self, **kwargs):
+        context = super(LeadListView, self).get_context_data(**kwargs)
+        user = self.request.user
+        if user.is_organizer:
+            queryset = Lead.objects.filter(organization=user.userprofile, agent__isnull=True)
+            context.update({
+                'unassigned_leads': queryset
+            })
+        return context
 
 
 

@@ -1,13 +1,11 @@
-from typing import Any
 from django.core.mail import send_mail
-from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
 from django.views import generic
 from agents.mixins import OrganizerLoginRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import LeadForm, AssignAgentFrom,  LeadModelForm, CustomUserCreationForm
-from .models import Lead, Agent
+from .models import Lead, Agent, Category
 
 class SignupView(generic.CreateView):
     template_name = 'registration/signup.html'
@@ -209,4 +207,14 @@ class AssignAgentView(OrganizerLoginRequiredMixin, generic.FormView):
         return super(AssignAgentView, self).form_valid(form)
     
 class CategoryListView(LoginRequiredMixin, generic.ListView):
-    template_name = 'leads/categoryt.html'
+    template_name = 'leads/category_list.html'
+    context_object_name = 'category_list'
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_organizer:
+            queryset = Category.objects.filter(organization=user.userprofile)
+        else:
+            queryset = Category.objects.filter(organization=user.agent.organization)
+        return queryset

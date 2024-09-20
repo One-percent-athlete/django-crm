@@ -208,3 +208,5 @@ class AssignAgentView(OrganizerLoginRequiredMixin, generic.FormView):
         lead.save()
         return super(AssignAgentView, self).form_valid(form)
     
+class CategoryListView(LoginRequiredMixin, generic.ListView):
+    template_name = 'leads/categoryt.html'

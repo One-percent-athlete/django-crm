@@ -28,6 +28,7 @@
             </h2>
             <p class="leading-relaxed text-base">Agent: {{ lead.agent }}</p>
             <p class="leading-relaxed text-base">Age: {{ lead.age }}</p>
+            <p class="leading-relaxed text-base">Category: {{ lead.category }}</p>
             <hr>
             <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"><a class="text-indigo-500 inline-flex items-center"><a href="{% url 'leads:lead_detail' lead.id %}">View this lead</a></button>
             <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"><a class="text-indigo-500 inline-flex items-center"><a href="{% url 'leads:lead_update' lead.id %}">Update</a>

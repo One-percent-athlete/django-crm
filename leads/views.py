@@ -1,5 +1,7 @@
 from typing import Any
 from django.core.mail import send_mail
+from django.db.models.base import Model as Model
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, reverse
 from django.views import generic
 from agents.mixins import OrganizerLoginRequiredMixin
@@ -203,7 +205,7 @@ class LeadCategoryUpdateView(LoginRequiredMixin, generic.UpdateView):
         return queryset
     
     def get_success_url(self):
-        return reverse('leads:category_list')
+        return reverse('leads:lead_detail', kwargs={'pk': self.get_object().id})
     
 
 class AssignAgentView(OrganizerLoginRequiredMixin, generic.FormView):

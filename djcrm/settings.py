@@ -10,21 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 from pathlib import Path
-import environ
+import dotenv
 import os
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
+dotenv.load_dotenv()
 
-READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=False)
-if READ_DOT_ENV_FILE:
-    environ.Env.read_env()
+# import environ
 
+# env = environ.Env(
+#     DEBUG=(bool, False)
+# )
 
-DEBUG = env('DEBUG')
-SECRET_KEY = env('SECRET_KEY')
+# READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=False)
+# if READ_DOT_ENV_FILE:
+#     environ.Env.read_env()
+
+# DEBUG = env('DEBUG')
+# SECRET_KEY = env('SECRET_KEY')
+# DB_PASSWORD = env('DB_PASSWORD')
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,7 +46,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 ALLOWED_HOSTS = ["django-crm-production-74d5.up.railway.app", "https://django-crm-production-74d5.up.railway.app"]
-CSRF_TRUSTED_ORIGINS=["django-crm-production-74d5.up.railway.app", "https://django-crm-production-74d5.up.railway.app"]
+CSRF_TRUSTED_ORIGINS=["https://django-crm-production-74d5.up.railway.app"]
 
 # Application definition
 
@@ -98,6 +103,11 @@ WSGI_APPLICATION = 'djcrm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': 'autorack.proxy.rlwy.net',
+        'PORT': '51963',
     }
 }
 

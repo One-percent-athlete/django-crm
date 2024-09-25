@@ -40,8 +40,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # False if not in os.environ because of casting above
 
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["django-crm-production-74d5.up.railway.app", "https://django-crm-production-74d5.up.railway.app"]
+CSRF_TRUSTED_ORIGINS=["django-crm-production-74d5.up.railway.app", "https://django-crm-production-74d5.up.railway.app"]
 
 # Application definition
 
@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'djcrm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
     }
 }
 

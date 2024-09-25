@@ -45,8 +45,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # False if not in os.environ because of casting above
 
 
-ALLOWED_HOSTS = ["django-crm-production-74d5.up.railway.app", "https://django-crm-production-74d5.up.railway.app"]
-CSRF_TRUSTED_ORIGINS=["https://django-crm-production-74d5.up.railway.app"]
+ALLOWED_HOSTS = ["web-production-f337.up.railway.app", "https://web-production-f337.up.railway.app"]
+CSRF_TRUSTED_ORIGINS=["https://web-production-f337.up.railway.app"]
 
 # Application definition
 

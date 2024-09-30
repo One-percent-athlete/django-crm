@@ -5,25 +5,34 @@ import os
 
 dotenv.load_dotenv()
 
-import environ
+# import environ
 
-env = environ.Env(
-    DEBUG=(bool, False)
-)
+# env = environ.Env()
+
+# environ.Env.read_env()
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=False)
-if READ_DOT_ENV_FILE:
-    environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+# READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=False)
+# if READ_DOT_ENV_FILE:
+#     environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
-DEBUG = env('DEBUG')
-SECRET_KEY = env('SECRET_KEY')
-DB_PASSWORD = env('DB_PASSWORD')
-DB_HOST = env('DB_HOST')
-DB_PORT = env('DB_PORT')
+# DEBUG = env('DEBUG')
+# SECRET_KEY = env('SECRET_KEY')
+# DB_PASSWORD = env('DB_PASSWORD')
+# DB_HOST = env('DB_HOST')
+# DB_PORT = env('DB_PORT')
+
+DEBUG = False
+# DEBUG = os.environ.get('DEBUG')
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DB_PASSWORD = os.environ.get('DB_PASSWORD')
+DB_HOST = os.environ.get('DB_HOST')
+DB_PORT = os.environ.get('DB_PORT')
+
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,8 +48,8 @@ DB_PORT = env('DB_PORT')
 # False if not in os.environ because of casting above
 
 
-ALLOWED_HOSTS = ["127.0.0.1", "web-production-f337.up.railway.app", "https://web-production-f337.up.railway.app"]
-CSRF_TRUSTED_ORIGINS=["https://web-production-f337.up.railway.app"]
+ALLOWED_HOSTS = ["127.0.0.1", "beneficial-courage-production.up.railway.app", "https://beneficial-courage-production.up.railway.app"]
+CSRF_TRUSTED_ORIGINS=["https://beneficial-courage-production.up.railway.app"]
 
 # Application definition
 
@@ -101,9 +110,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
-        'PORT': DB_PORT,
+        'PASSWORD': os.environ['DBPASSWORD'],
+        'HOST': 'autorack.proxy.rlwy.net',
+        'PORT': 51963,
     }
 }
 
@@ -163,3 +172,5 @@ LOGIN_URL = "/login/"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 
 CRISPY_TEMPLATE_PACK = "tailwind"
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
